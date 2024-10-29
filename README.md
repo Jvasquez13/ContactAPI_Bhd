@@ -27,3 +27,37 @@ Este es un proyecto de API RESTful para la gestión de usuarios en .NET Core con
 
   "ConnectionStrings": {
     "DefaultConnection": "Server=TU_SERVIDOR;Database=Contacts;Trusted_Connection=True;"
+
+
+## Ejemplo de solicitud:
+
+**Registro de usuarios
+json
+
+{
+  "name": "Carlos Martínez",
+  "email": "carlos.martinez@example.com",
+  "password": "Password123",
+  "phones": [
+    {
+      "number": "123456789",
+      "citycode": "1",
+      "countrycode": "57"
+    }
+  ]
+}
+
+**Inicio de sesión
+
+Ejemplo de solicitud:
+
+{
+  "email": "carlos.martinez@example.com",
+  "password": "Password123" 
+}
+
+**Obtener todos los usuarios (Requiere JWT)
+GET /api/User/all
+
+**Obtener usuario por ID (Requiere JWT)
+GET /api/User/{id}
