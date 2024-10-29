@@ -21,7 +21,7 @@ Este es un proyecto de API RESTful para la gestión de usuarios en .NET Core con
 - **POST /api/User/register**: Registra un nuevo usuario.
 - **POST /api/User/login**: Genera un token JWT para un usuario registrado.
 - **GET /api/User/{id}**: Obtiene la información de un usuario (requiere autenticación).
-- **GET /api/User/all**: Obtiene una lista de todos los usuarios (requiere autenticación).
+- **GET /api/User/GetAll**: Obtiene una lista de todos los usuarios (requiere autenticación).
 
 ## Configura la cadena de conexión de la base de datos en appsettings.json
 
@@ -57,7 +57,7 @@ Ejemplo de solicitud:
 }
 
 **Obtener todos los usuarios (Requiere JWT)
-GET /api/User/all
+GET /api/User/GetAll
 
 **Obtener usuario por ID (Requiere JWT)
 GET /api/User/{id}
