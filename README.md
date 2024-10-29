@@ -1,6 +1,6 @@
 # API de Contactos
 
-Este es un proyecto de API RESTful para la gestión de usuarios en .NET Core con autenticación JWT. La API permite registrar usuarios, iniciar sesión para obtener un token de acceso y consultar datos de usuario, utilizando autenticación y autorización basada en JWT.
+Este es un proyecto de API RESTful para la gestión de contactos en .NET Core con autenticación JWT. La API permite registrar usuarios, iniciar sesión para obtener un token de acceso y consultar datos de usuario, utilizando autenticación y autorización basada en JWT.
 
 ## Características
 
