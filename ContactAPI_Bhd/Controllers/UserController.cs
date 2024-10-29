@@ -119,7 +119,7 @@ namespace ContactAPI_Bhd.Controllers
                 return StatusCode(500, new { mensaje = "Ocurrió un error interno en el servidor." });
             }
         }
-
+        // Endpoint para hacer login (Obtener Token)
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginDTO login)
         {
@@ -149,7 +149,7 @@ namespace ContactAPI_Bhd.Controllers
             });
         }
 
-
+        // Endpoint para obtener usuario por id (requiere autorización)
         [HttpGet("{id}")]
         [Authorize]
         public async Task<IActionResult> GetUserById(Guid id)
