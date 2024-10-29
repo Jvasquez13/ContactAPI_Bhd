@@ -11,6 +11,6 @@ namespace ContactAPI_Bhd.Models
         public string CityCode { get; set; } = null!;
         public string CountryCode { get; set; } = null!;
 
-        public virtual User User { get; set; } = null!;
+        public virtual User? User { get; set; } = null!;
     }
 }
