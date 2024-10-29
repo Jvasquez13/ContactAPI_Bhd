@@ -43,10 +43,10 @@ namespace ContactAPI_Bhd.Controllers
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-            new Claim(ClaimTypes.Name, user.Id.ToString()),
-            new Claim(ClaimTypes.Email, user.Email)
+                    new Claim(ClaimTypes.Name, user.Id.ToString()),
+                    new Claim(ClaimTypes.Email, user.Email)
                 }),
-                Expires = DateTime.UtcNow.AddMinutes(1), // Expira en 1 minuto
+                Expires = DateTime.UtcNow.AddMinutes(int.Parse(_configuration["Jwt:ExpiresInMinutes"])), // Expira en 1 minuto
                 Issuer = _configuration["Jwt:Issuer"],
                 Audience = _configuration["Jwt:Audience"],
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
@@ -86,7 +86,7 @@ namespace ContactAPI_Bhd.Controllers
                 user.LastLogin = user.Created;
                 user.IsActive = true;
 
-                // Inicializar la colección de teléfonos si es nula
+                // Inicializar la colección de teléfonos si es nula.
                 user.Phones = user.Phones ?? new List<Phone>();
 
                 // Crear el usuario y guardar en la base de datos
@@ -177,6 +177,40 @@ namespace ContactAPI_Bhd.Controllers
                     countrycode = p.CountryCode
                 })
             });
+        }
+
+        // Endpoint para obtener todos los usuarios (requiere autorización)
+        [HttpGet("GetAll")]
+        [Authorize]
+        public async Task<IActionResult> GetAllUsers()
+        {
+            try
+            {
+                var users = await _context.Users
+                    .Select(user => new
+                    {
+                        id = user.Id,
+                        name = user.Name,
+                        email = user.Email,
+                        created = user.Created,
+                        modified = user.Modified,
+                        last_login = user.LastLogin,
+                        isactive = user.IsActive,
+                        phones = user.Phones.Select(p => new
+                        {
+                            number = p.Number,
+                            citycode = p.CityCode,
+                            countrycode = p.CountryCode
+                        })
+                    })
+                    .ToListAsync();
+
+                return Ok(users);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { mensaje = "Ocurrió un error al obtener los usuarios." });
+            }
         }
     }
 }
