@@ -1,12 +1,12 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using ContactsApi.Models;
-using Microsoft.AspNetCore.Authentication.JwtBearer; // Asegúrate de ajustar el namespace a tu proyecto
+using ContactAPI_Bhd.Models;
+using Microsoft.AspNetCore.Authentication.JwtBearer; 
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Configuración de conexión a la base de datos
+// Configurar el contexto de base de datos
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
@@ -28,6 +28,8 @@ builder.Services.AddAuthentication(options =>
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
     };
 });
+
+builder.Services.AddControllers();
 
 var app = builder.Build();
 
