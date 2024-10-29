@@ -1,5 +1,3 @@
-# ContactAPI - Bhd
-
 # API de Contactos
 
 Este es un proyecto de API RESTful para la gestión de usuarios en .NET Core con autenticación JWT. La API permite registrar usuarios, iniciar sesión para obtener un token de acceso y consultar datos de usuario, utilizando autenticación y autorización basada en JWT.
@@ -25,7 +23,7 @@ Este es un proyecto de API RESTful para la gestión de usuarios en .NET Core con
 - **GET /api/User/{id}**: Obtiene la información de un usuario (requiere autenticación).
 - **GET /api/User/all**: Obtiene una lista de todos los usuarios (requiere autenticación).
 
-**Configura la cadena de conexión de la base de datos en appsettings.json
+## Configura la cadena de conexión de la base de datos en appsettings.json
 
   "ConnectionStrings": {
     "DefaultConnection": "Server=TU_SERVIDOR;Database=Contacts;Trusted_Connection=True;"
